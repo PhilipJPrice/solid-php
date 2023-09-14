@@ -15,7 +15,7 @@ class Square implements ShapeInterface
 	public function area()
 	{
 		return pow($this->length, 2);
-	{
+	}
 }
 
 class Circle implements ShapeInterface
