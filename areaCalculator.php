@@ -57,6 +57,20 @@ class AreaCalculator
 	}
 }
 
+class VolumeCalculator extends AreaCalculator
+{
+	public function construct($shapes = [])
+	{
+		parent::construct($shapes);
+	}
+
+	public function sum()
+	{
+		// logic to calculate the volumes and then return an array of output
+		return $summedData;
+	}
+}
+
 class SumCalculatorOutputter
 {
 	protected $calculator;
@@ -67,22 +81,21 @@ class SumCalculatorOutputter
 	}
 
 	public function JSON()
-	{
-		$data = [
+		$data = array(
 			'sum' => $this->calculator->sum(),
-		];
+		);
 
 		return json_encode($data);
 	}
 
 	public function HTML()
 	{
-		return implode('', [
+		return implode('', array(
 			'',
 				'Sum of the areas of provided shapes: ',
 				$this->calculator->sum(),
-			'',
-		]);
+			''
+		));
 	}
 }
 
@@ -93,7 +106,7 @@ $shapes = [
 ];
 
 $areas = new AreaCalculator($shapes);
-$output = new SumCalculatorOutputter($areas);
+$volumes = new VolumeCalculator($solidShapes);
 
-echo $output->JSON();
-echo $output->HTML();
+$output = new SumCalculatorOutputter($areas);
+$output2 = new SumCalculatorOutputter($volumes);
