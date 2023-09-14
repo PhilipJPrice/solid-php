@@ -3,7 +3,17 @@ interface ShapeInterface
 	public function area();
 }
 
-class Square implements ShapeInterface
+interface ThreeDimensionalShapeInterface
+{
+	public function volume();
+}
+
+interface ManageShapeInterface
+{
+	public function calculate();
+}
+
+class Square implements ShapeInterface, ManageShapeInterface
 {
 	public $length;
 
@@ -15,10 +25,15 @@ class Square implements ShapeInterface
 	public function area()
 	{
 		return pow($this->length, 2);
+	}
+
+	public function calculate()
 	{
+		return $this->area();
+	}
 }
 
-class Circle implements ShapeInterface
+class Circle implements ShapeInterface, ManageShapeInterface
 {
 	public $radius;
 
@@ -30,6 +45,29 @@ class Circle implements ShapeInterface
 	public function area()
 	{
 		return pi() * pow($shape->radius, 2);
+	}
+
+	public function calculate()
+	{
+		return $this->area();
+	}
+}
+
+class Cuboid implements ShapeInterface, ThreeDimensionalShapeInterface
+{
+	public function area()
+	{
+		// calculate the surface area of the cuboid
+	}
+
+	public function volume()
+	{
+		// calculate the volume of the cuboid
+	}
+
+	public function calculate()
+	{
+		return $this->area();
 	}
 }
 
